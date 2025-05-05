@@ -1,0 +1,667 @@
+:root {
+    --background-color: #FFFBF0;
+    --text-color: #151515;
+    --container-width: 100%;
+    --container-padding: 0 10vw;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.5;
+    font-size: 20px;
+}
+
+.container {
+    width: var(--container-width);
+    max-width: none;
+    margin: 0 auto;
+    padding: var(--container-padding);
+    position: relative;
+    z-index: 1;
+    height: 100%;
+}
+
+/* Header Styles */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 61px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--container-padding);
+    background-color: var(--background-color);
+    border-bottom: 1px solid var(--text-color);
+    z-index: 1000;
+}
+
+.nav-links {
+    display: flex;
+    gap: 50px;
+}
+
+.nav-links a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 18px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: -2px;
+    left: 0;
+    background-color: var(--text-color);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.language-selector {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+/* Section Styles */
+section {
+    position: sticky;
+    top: 61px;
+    height: 100vh;
+    background-color: var(--background-color);
+    z-index: 1;
+    scroll-margin-top: 61px;
+    border-top: 1px solid var(--text-color);
+    display: flex;
+    align-items: flex-start;
+    padding: 60px 0 0 0;
+}
+
+section::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: var(--text-color);
+    z-index: 2;
+}
+
+/* Hero Section */
+.hero {
+    position: sticky;
+    top: 61px;
+    height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    z-index: 1;
+    border-top: none;
+    padding: 60px 0 0 0;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: var(--text-color);
+}
+
+.hero h1 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 80px;
+    font-weight: 400;
+    margin-bottom: 32px;
+}
+
+.hero h2 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 70px;
+    margin-bottom: 0px;
+    font-weight: 400;
+}
+
+/* Animation Keyframes */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Section Content Animations */
+.hero .container > *,
+.projects .container > *,
+.contact .container > * {
+    animation: fadeIn 0.8s ease-out forwards;
+    opacity: 0;
+}
+
+.hero .container > * {
+    animation-delay: 0.2s;
+}
+
+.projects .container > * {
+    animation-delay: 0.4s;
+}
+
+.contact .container > * {
+    animation-delay: 0.6s;
+}
+
+/* Carousel Styles */
+.carousel {
+    width: 100vw;
+    margin-left: calc(-10vw);
+    margin-bottom: 40px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    animation: fadeIn 0.8s ease-out forwards;
+    opacity: 0;
+    animation-delay: 0.3s;
+    z-index: 2;
+}
+
+.carousel-content {
+    display: flex;
+    gap: 200px;
+    animation: scroll 60s linear infinite;
+    width: fit-content;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.carousel span {
+    white-space: nowrap;
+    font-size: 24px;
+    font-family: 'Instrument Serif', serif;
+    flex-shrink: 0;
+    transition: font-style 0.3s ease;
+}
+
+.carousel span:hover {
+    font-style: italic;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-50% - 50px));
+    }
+}
+
+/* Adjust container positioning */
+.hero .container {
+    height: 100%;
+    position: relative;
+    width: 100%;
+    padding: 0 10vw;
+}
+
+.projects .container,
+.contact .container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+    width: 100%;
+    align-items: flex-start;
+    padding: 0 10vw;
+}
+
+.content-about {
+    position: relative;
+    padding-left: 20px;
+    border-left: 1px solid var(--text-color);
+    height: 100%;
+    min-height: 100%;
+}
+
+.content-projects {
+    position: relative;
+    padding-right: 0;
+    padding-left: 0;
+    border-right: 1px solid var(--text-color);
+    height: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0 !important;
+    width: 100%;
+}
+
+.content-projects::after {
+    content: '';
+    position: absolute;
+    right: -1px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background-color: var(--text-color);
+}
+
+.content-about p {
+    font-size: 20px;
+    margin-bottom: 40px;
+}
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro', sans-serif;
+    font-size: 24px;
+    padding: 10px 0;
+    background: none;
+    border: none;
+    border-bottom: 1px solid var(--text-color);
+    color: var(--text-color);
+    cursor: pointer;
+    position: relative;
+    width: fit-content;
+    transition: all 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.button:hover {
+    cursor: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 17L17 7" stroke="%23151515" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 7h10v10" stroke="%23151515" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>') 12 12, pointer;
+}
+
+/* Projects Section */
+.projects {
+    position: sticky;
+    top: 61px;
+    height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    z-index: 2;
+    margin-top: 120px;
+    padding: 60px 0 0 0;
+}
+
+.projects::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: var(--text-color);
+}
+
+.projects h2 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 70px;
+    margin-bottom: 33px;
+    font-weight: 400;
+}
+
+.projects .project-link {
+    padding: 20px 0;
+    margin-bottom: 0;
+    animation: fadeIn 0.8s ease-out forwards;
+    opacity: 0;
+    position: relative;
+}
+
+.projects .project-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 1px;
+    background: #151515;
+    transition: width 0.5s cubic-bezier(0.77,0,0.175,1);
+}
+
+.projects .project-link:hover::after {
+    width: 100%;
+}
+
+.projects .project-link:hover {
+    cursor: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 17L17 7" stroke="%23151515" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 7h10v10" stroke="%23151515" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>') 12 12, pointer;
+}
+
+.projects .project-link a {
+    font-size: 32px;
+    position: relative;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: color 0.3s;
+}
+
+.floating-project-image {
+    position: absolute;
+    left: 100%;
+    top: 0;
+    margin-left: 40px;
+    width: auto;
+    height: auto;
+    max-width: 350px;
+    max-height: 350px;
+    pointer-events: none;
+    opacity: 0;
+    border-radius: 16px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.15);
+    background-size: contain;
+    background-position: left top;
+    background-repeat: no-repeat;
+    transition: opacity 0.5s cubic-bezier(0.77,0,0.175,1), top 0.5s cubic-bezier(0.77,0,0.175,1);
+    z-index: 10;
+}
+
+.floating-project-image.active {
+    opacity: 1;
+}
+
+.project-link p {
+    font-size: 29px;
+    margin-left: 20px;
+}
+
+/* Contact Section */
+.contact {
+    position: sticky;
+    top: 61px;
+    height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    z-index: 3;
+    margin-top: 120px;
+    padding: 60px 0 0 0;
+}
+
+.contact::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: var(--text-color);
+}
+
+.contact h2 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 70px;
+    margin-bottom: 33px;
+    font-weight: 400;
+}
+
+.contact-link {
+    padding: 20px 20px;
+    margin-bottom: 0;
+    animation: fadeIn 0.8s ease-out forwards;
+    opacity: 0;
+    position: relative;
+}
+
+.contact-link:nth-child(1) { animation-delay: 0.5s; }
+.contact-link:nth-child(2) { animation-delay: 0.7s; }
+
+.contact-link a {
+    font-size: 32px;
+    position: relative;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: color 0.3s;
+}
+
+.contact-link a::after {
+    content: none;
+}
+
+.contact-link:hover {
+    cursor: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 17L17 7" stroke="%23151515" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 7h10v10" stroke="%23151515" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>') 12 12, pointer;
+}
+
+/* Ensure proper stacking context */
+main {
+    position: relative;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    :root {
+        --container-padding: 0 10vw;
+    }
+}
+
+@media (max-width: 900px) {
+    :root {
+        --container-padding: 0 10vw;
+    }
+
+    body {
+        font-size: 14px;
+    }
+
+    .hero h1,
+    .hero h2 {
+        font-size: 60px;
+    }
+
+    .carousel span {
+        font-size: 24px;
+    }
+
+    .content-about p,
+    .button {
+        font-size: 20px;
+    }
+
+    .projects h2,
+    .contact h2 {
+        font-size: 45px;
+    }
+
+    .project-link a,
+    .contact-link a {
+        font-size: 18px;
+    }
+
+    .project-link p {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 600px) {
+    :root {
+        --container-padding: 0 10vw;
+    }
+
+    .nav-links {
+        gap: 20px;
+    }
+
+    .nav-links a {
+        font-size: 16px;
+    }
+
+    .hero h1 {
+        font-size: 40px;
+        margin-bottom: 20px;
+    }
+
+    .hero h2 {
+        font-size: 60px;
+    }
+
+    .carousel {
+        gap: 16px;
+    }
+
+    .carousel span {
+        font-size: 16px;
+    }
+
+    .content-about p {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    .projects h2,
+    .contact h2 {
+        font-size: 45px;
+    }
+
+    .project-link a,
+    .contact-link a {
+        font-size: 20px;
+    }
+
+    .project-link p {
+        font-size: 18px;
+    }
+
+    .content-about,
+    .content-projects,
+    .content-contact {
+        gap: 40px;
+    }
+
+    .button {
+        font-size: 18px;
+    }
+
+    body {
+        font-size: 16px;
+    }
+
+    .project-link {
+        padding: 14px 0;
+    }
+
+    .floating-project-image {
+        display: none;
+    }
+
+    .contact-link {
+        padding: 14px 10px;
+    }
+}
+
+/* Word Rotator Styles */
+.word-rotator {
+    display: inline-flex;
+    align-items: baseline;
+    position: relative;
+    min-width: 180px;
+    min-height: 1em;
+    font-style: italic;
+    transition: color 0.5s;
+}
+.word-rotator i {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    transition: opacity 0.8s cubic-bezier(0.77,0,0.175,1), transform 0.8s cubic-bezier(0.77,0,0.175,1);
+    opacity: 1;
+    transform: translateY(0);
+    min-height: 1em;
+    line-height: inherit;
+}
+.word-rotator i.fading {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+/* Remove .button-icon styles */
+.button-icon {
+    display: none !important;
+}
+
+@media (max-width: 600px) {
+  .projects .project-link a {
+    font-size: 20px;
+  }
+  .floating-project-image {
+    display: none;
+  }
+}
+
+.content-contact {
+    position: relative;
+    padding-right: 0;
+    padding-left: 0;
+    border-left: 1px solid var(--text-color);
+    border-right: none;
+    height: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0 !important;
+    width: 100%;
+}
+.contact-link {
+    padding: 20px 20px;
+    margin-bottom: 0;
+    animation: fadeIn 0.8s ease-out forwards;
+    opacity: 0;
+    position: relative;
+}
+.contact-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 1px;
+    background: #151515;
+    transition: width 0.5s cubic-bezier(0.77,0,0.175,1);
+}
+.contact-link:hover::after {
+    width: 100%;
+}
+.contact-link:hover {
+    cursor: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 17L17 7" stroke="%23151515" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 7h10v10" stroke="%23151515" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>') 12 12, pointer;
+}
+.contact-link a {
+    font-size: 32px;
+    position: relative;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: color 0.3s;
+}
+@media (max-width: 600px) {
+  .contact-link a {
+    font-size: 20px;
+  }
+  .contact-link {
+    padding: 14px 10px;
+  }
+} 

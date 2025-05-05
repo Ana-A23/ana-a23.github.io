@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ana Lima - Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-links">
+            <a href="#about">About me</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <div class="language-selector">
+            <span>Eng</span>
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="#151515" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+    </header>
+
+    <main>
+        <section id="about" class="hero">
+            <div class="container">
+                <h1>I'm Ana, <i>Brazilian</i> software designer<br>with practice in <span class="word-rotator"><i>user interface</i></span></h1>
+                <div class="content-about">
+                    <p>With skills in research, prototyping and visual design, I'm always looking for the best user experience in every project. I love working in teams, collaborating in creative processes, and staying up to date with the latest market trends. Additionally, I'm communicative, proactive and organized, characteristics that help me handle deadlines and challenging projects. Let's exchange ideas and create something amazing together?</p>
+                    <button class="button">
+                        Download my CV
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="projects">
+            <div class="container">
+                <h2>Selected projects</h2>
+                <div class="content-projects">
+                    <div class="project-link">
+                        <a href="#" data-image="frattina-mockup.png">Frattina</a>
+                    </div>
+                    <div class="project-link">
+                        <a href="#" data-image="webdesign.jpg">Design system framework</a>
+                    </div>
+                    <div class="project-link">
+                        <a href="#" data-image="libri.jpg">Libri.</a>
+                    </div>
+                    <div class="floating-project-image"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2>Contact info</h2>
+                <div class="content-contact">
+                    <div class="contact-link">
+                        <a href="#">
+                            <span>Ana Lima | LinkedIn</span>
+                        </a>
+                    </div>
+                    <div class="contact-link">
+                        <a href="mailto:anaxlves@gmail.com">anaxlves@gmail.com</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+<script>
+const words = [
+  'Design systems',
+  'Prototyping',
+  'Branding',
+  'User interface',
+  'User experience',
+  'Interaction design'
+];
+const rotator = document.querySelector('.word-rotator i');
+let idx = 0;
+function showNextWord() {
+  rotator.classList.add('fading');
+  setTimeout(() => {
+    idx = (idx + 1) % words.length;
+    rotator.textContent = words[idx];
+    rotator.classList.remove('fading');
+  }, 500);
+}
+setInterval(showNextWord, 2200);
+
+const projectLinks = document.querySelectorAll('.project-link a');
+const floatingImg = document.querySelector('.floating-project-image');
+const projectsContainer = document.querySelector('.content-projects');
+projectLinks.forEach(link => {
+  link.addEventListener('mouseenter', e => {
+    const img = link.getAttribute('data-image');
+    if (img) {
+      floatingImg.style.backgroundImage = `url('${img}')`;
+      const linkRect = link.parentElement.getBoundingClientRect();
+      const containerRect = projectsContainer.getBoundingClientRect();
+      floatingImg.style.top = (linkRect.top - containerRect.top) + 'px';
+      floatingImg.classList.add('active');
+    }
+  });
+  link.addEventListener('mouseleave', e => {
+    floatingImg.classList.remove('active');
+  });
+});
+</script>
+</html> 
