@@ -8,21 +8,49 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="favicon.png">
 </head>
 <body>
     <header class="header">
-        <nav class="nav-links">
-            <a href="#about">About me</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
-        </nav>
+        <button class="hamburger" id="hamburger" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="logo">Ana Lima</div>
         <div class="language-selector">
-            <span>Eng</span>
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="#151515" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+            <span class="active">Eng</span>
+            <span>Pt</span>
         </div>
     </header>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <div class="mobile-menu-header">
+        <button class="close-menu" id="closeMenu" aria-label="Close menu">&times;</button>
+        <div class="logo">Ana Lima</div>
+        <div class="language-selector">
+            <span class="active">Eng</span>
+            <span>Pt</span>
+        </div>
+      </div>
+      <nav class="mobile-nav">
+        <section>
+          <h2>About me</h2>
+          <button class="button">Download my CV</button>
+        </section>
+        <section>
+          <h2>Selected projects</h2>
+          <ul>
+            <li>Frattina</li>
+            <li>Design System framework</li>
+            <li>Libri.</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Contact</h2>
+          <div>Ana Lima | LinkedIn</div>
+          <div>anaxlves@gmail.com</div>
+        </section>
+      </nav>
+    </div>
 
     <main>
         <section id="about" class="hero">
@@ -42,13 +70,13 @@
                 <h2>Selected projects</h2>
                 <div class="content-projects">
                     <div class="project-link">
-                        <a href="#" data-image="frattina-mockup.png">Frattina</a>
+                        <a href="#" data-image="frattina.png">Frattina</a>
                     </div>
                     <div class="project-link">
                         <a href="#" data-image="webdesign.jpg">Design system framework</a>
                     </div>
                     <div class="project-link">
-                        <a href="#" data-image="libri.jpg">Libri.</a>
+                        <a href="#" data-image="libri.png">Libri.</a>
                     </div>
                     <div class="floating-project-image"></div>
                 </div>
@@ -93,23 +121,65 @@ function showNextWord() {
 }
 setInterval(showNextWord, 2200);
 
-const projectLinks = document.querySelectorAll('.project-link a');
+const projectLinks = document.querySelectorAll('.project-link');
 const floatingImg = document.querySelector('.floating-project-image');
 const projectsContainer = document.querySelector('.content-projects');
-projectLinks.forEach(link => {
-  link.addEventListener('mouseenter', e => {
-    const img = link.getAttribute('data-image');
+// Ensure floating image uses an <img> tag
+if (!floatingImg.querySelector('img')) {
+  const imgEl = document.createElement('img');
+  imgEl.style.width = '100%';
+  imgEl.style.height = 'auto';
+  imgEl.style.display = 'block';
+  floatingImg.appendChild(imgEl);
+}
+const floatingImgTag = floatingImg.querySelector('img');
+projectLinks.forEach(linkDiv => {
+  linkDiv.addEventListener('mouseenter', e => {
+    const a = linkDiv.querySelector('a');
+    const img = a.getAttribute('data-image');
     if (img) {
-      floatingImg.style.backgroundImage = `url('${img}')`;
-      const linkRect = link.parentElement.getBoundingClientRect();
-      const containerRect = projectsContainer.getBoundingClientRect();
-      floatingImg.style.top = (linkRect.top - containerRect.top) + 'px';
+      floatingImgTag.src = img;
+      floatingImg.style.top = '0px';
       floatingImg.classList.add('active');
     }
   });
-  link.addEventListener('mouseleave', e => {
+  linkDiv.addEventListener('mouseleave', e => {
     floatingImg.classList.remove('active');
   });
+  // Mobile: show image on click
+  linkDiv.addEventListener('click', e => {
+    if (window.innerWidth <= 600) {
+      e.preventDefault();
+      const a = linkDiv.querySelector('a');
+      const img = a.getAttribute('data-image');
+      if (img) {
+        floatingImgTag.src = img;
+        floatingImg.style.top = '0px';
+        floatingImg.style.display = 'block';
+        floatingImg.classList.add('active');
+      }
+    }
+  });
+});
+// Hide floating image on mobile when clicking elsewhere
+if (window.innerWidth <= 600) {
+  document.body.addEventListener('click', function(e) {
+    if (!e.target.closest('.project-link')) {
+      floatingImg.classList.remove('active');
+      floatingImg.style.display = '';
+    }
+  });
+}
+
+// Hamburger menu JS
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+const closeMenu = document.getElementById('closeMenu');
+hamburger.addEventListener('click', () => {
+  mobileMenu.classList.add('open');
+});
+closeMenu.addEventListener('click', () => {
+  mobileMenu.classList.remove('open');
 });
 </script>
 </html> 
