@@ -708,7 +708,7 @@ main {
   z-index: 2000;
   flex-direction: column;
   padding: 0;
-  overflow-y: auto;
+  overflow: hidden;
 }
 .mobile-menu.open {
   display: flex;
@@ -717,7 +717,9 @@ main {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 24px 24px 0 24px;
+  padding: 20px 12px;
+  border-bottom: 1px solid #FFFBF0;
+  height: 80px;
 }
 .mobile-menu .logo {
   font-family: 'Instrument Serif', serif;
@@ -732,6 +734,12 @@ main {
   font-size: 32px;
   cursor: pointer;
   margin-right: 16px;
+  padding: 0;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .mobile-menu .language-selector {
   display: flex;
@@ -745,20 +753,35 @@ main {
 .mobile-nav {
   display: flex;
   flex-direction: column;
-  gap: 32px;
-  padding: 32px 24px;
+  gap: 50px;
+  padding: 32px 12px;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
 }
 .mobile-nav section {
   border-left: 2px solid #FFFBF0;
-  padding-left: 16px;
-  margin-bottom: 24px;
+  padding-left: 20px;
+  margin-bottom: 32px;
+  position: relative;
+  background-color: #151515;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-top: 0;
+  margin-top: 0;
+}
+.mobile-nav section:last-child {
+  margin-bottom: 0;
 }
 .mobile-nav h2 {
   font-family: 'Instrument Serif', serif;
-  font-size: 28px;
-  margin-bottom: 12px;
+  font-size: 42px;
+  margin-bottom: 32px;
   color: #FFFBF0;
   font-weight: 400;
+  line-height: 1.2;
 }
 .mobile-nav ul {
   list-style: none;
@@ -766,14 +789,29 @@ main {
   margin: 0;
 }
 .mobile-nav li {
-  font-size: 18px;
-  margin-bottom: 12px;
+  font-size: 24px;
+  margin-bottom: 32px;
+  color: #FFFBF0;
+  line-height: 1.2;
+}
+.mobile-nav li:last-child {
+  margin-bottom: 0;
 }
 .mobile-nav .button {
   color: #FFFBF0;
   border-bottom: 1px solid #FFFBF0;
-  font-size: 18px;
-  margin-top: 8px;
+  font-size: 24px;
+  margin-top: 32px;
+  padding: 0;
+  background: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  text-align: left;
+  width: auto;
+}
+.mobile-nav .button:hover {
+  cursor: pointer;
 }
 @media (max-width: 600px) {
   .header {
