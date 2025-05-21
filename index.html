@@ -9,15 +9,110 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="favicon.png">
+    <script>
+    const words = [
+      'Design systems',
+      'Prototyping',
+      'Branding',
+      'User interface',
+      'User experience',
+      'Interaction design'
+    ];
+    const rotator = document.querySelector('.word-rotator i');
+    let idx = 0;
+    function showNextWord() {
+      rotator.classList.add('fading');
+      setTimeout(() => {
+        idx = (idx + 1) % words.length;
+        rotator.textContent = words[idx];
+        rotator.classList.remove('fading');
+      }, 500);
+    }
+    setInterval(showNextWord, 2200);
+
+    const projectLinks = document.querySelectorAll('.project-link');
+    const floatingImg = document.querySelector('.floating-project-image');
+    const projectsContainer = document.querySelector('.content-projects');
+    // Ensure floating image uses an <img> tag
+    if (!floatingImg.querySelector('img')) {
+      const imgEl = document.createElement('img');
+      imgEl.style.width = '100%';
+      imgEl.style.height = 'auto';
+      imgEl.style.display = 'block';
+      floatingImg.appendChild(imgEl);
+    }
+    const floatingImgTag = floatingImg.querySelector('img');
+    projectLinks.forEach(linkDiv => {
+      linkDiv.addEventListener('mouseenter', e => {
+        const a = linkDiv.querySelector('a');
+        const img = a.getAttribute('data-image');
+        if (img) {
+          floatingImgTag.src = img;
+          floatingImg.style.top = '0px';
+          floatingImg.classList.add('active');
+        }
+      });
+      linkDiv.addEventListener('mouseleave', e => {
+        floatingImg.classList.remove('active');
+      });
+      // Mobile: show image on click
+      linkDiv.addEventListener('click', e => {
+        if (window.innerWidth <= 600) {
+          e.preventDefault();
+          const a = linkDiv.querySelector('a');
+          const img = a.getAttribute('data-image');
+          if (img) {
+            floatingImgTag.src = img;
+            floatingImg.style.top = '0px';
+            floatingImg.style.display = 'block';
+            floatingImg.classList.add('active');
+          }
+        }
+      });
+    });
+    // Hide floating image on mobile when clicking elsewhere
+    if (window.innerWidth <= 600) {
+      document.body.addEventListener('click', function(e) {
+        if (!e.target.closest('.project-link')) {
+          floatingImg.classList.remove('active');
+          floatingImg.style.display = '';
+        }
+      });
+    }
+
+    // Hamburger menu JS
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const closeMenu = document.getElementById('closeMenu');
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.add('open');
+      hamburger.classList.add('open');
+    });
+    closeMenu.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      hamburger.classList.remove('open');
+    });
+    </script>
 </head>
 <body>
     <header class="header">
         <button class="hamburger" id="hamburger" aria-label="Open menu">
           <span></span><span></span><span></span>
         </button>
-        <div class="logo">Ana Lima</div>
+        <div class="logo"><img src="logo.svg" alt="Ana Lima Logo"></div>
+        <div class="nav-links">
+            <div class="nav-link-item">
+                <a href="#about">About me</a>
+            </div>
+            <div class="nav-link-item">
+                <a href="#projects">Selected projects</a>
+            </div>
+            <div class="nav-link-item">
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
         <div class="language-selector">
-            <span class="active">Eng</span>
+            <span>Eng</span>
             <span>Pt</span>
         </div>
     </header>
@@ -100,88 +195,4 @@
         </section>
     </main>
 </body>
-<script>
-const words = [
-  'Design systems',
-  'Prototyping',
-  'Branding',
-  'User interface',
-  'User experience',
-  'Interaction design'
-];
-const rotator = document.querySelector('.word-rotator i');
-let idx = 0;
-function showNextWord() {
-  rotator.classList.add('fading');
-  setTimeout(() => {
-    idx = (idx + 1) % words.length;
-    rotator.textContent = words[idx];
-    rotator.classList.remove('fading');
-  }, 500);
-}
-setInterval(showNextWord, 2200);
-
-const projectLinks = document.querySelectorAll('.project-link');
-const floatingImg = document.querySelector('.floating-project-image');
-const projectsContainer = document.querySelector('.content-projects');
-// Ensure floating image uses an <img> tag
-if (!floatingImg.querySelector('img')) {
-  const imgEl = document.createElement('img');
-  imgEl.style.width = '100%';
-  imgEl.style.height = 'auto';
-  imgEl.style.display = 'block';
-  floatingImg.appendChild(imgEl);
-}
-const floatingImgTag = floatingImg.querySelector('img');
-projectLinks.forEach(linkDiv => {
-  linkDiv.addEventListener('mouseenter', e => {
-    const a = linkDiv.querySelector('a');
-    const img = a.getAttribute('data-image');
-    if (img) {
-      floatingImgTag.src = img;
-      floatingImg.style.top = '0px';
-      floatingImg.classList.add('active');
-    }
-  });
-  linkDiv.addEventListener('mouseleave', e => {
-    floatingImg.classList.remove('active');
-  });
-  // Mobile: show image on click
-  linkDiv.addEventListener('click', e => {
-    if (window.innerWidth <= 600) {
-      e.preventDefault();
-      const a = linkDiv.querySelector('a');
-      const img = a.getAttribute('data-image');
-      if (img) {
-        floatingImgTag.src = img;
-        floatingImg.style.top = '0px';
-        floatingImg.style.display = 'block';
-        floatingImg.classList.add('active');
-      }
-    }
-  });
-});
-// Hide floating image on mobile when clicking elsewhere
-if (window.innerWidth <= 600) {
-  document.body.addEventListener('click', function(e) {
-    if (!e.target.closest('.project-link')) {
-      floatingImg.classList.remove('active');
-      floatingImg.style.display = '';
-    }
-  });
-}
-
-// Hamburger menu JS
-const hamburger = document.getElementById('hamburger');
-const mobileMenu = document.getElementById('mobileMenu');
-const closeMenu = document.getElementById('closeMenu');
-hamburger.addEventListener('click', () => {
-  mobileMenu.classList.add('open');
-  hamburger.classList.add('open');
-});
-closeMenu.addEventListener('click', () => {
-  mobileMenu.classList.remove('open');
-  hamburger.classList.remove('open');
-});
-</script>
 </html> 
