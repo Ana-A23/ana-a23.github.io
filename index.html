@@ -9,110 +9,21 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="favicon.png">
-    <script>
-    const words = [
-      'Design systems',
-      'Prototyping',
-      'Branding',
-      'User interface',
-      'User experience',
-      'Interaction design'
-    ];
-    const rotator = document.querySelector('.word-rotator i');
-    let idx = 0;
-    function showNextWord() {
-      rotator.classList.add('fading');
-      setTimeout(() => {
-        idx = (idx + 1) % words.length;
-        rotator.textContent = words[idx];
-        rotator.classList.remove('fading');
-      }, 500);
-    }
-    setInterval(showNextWord, 2200);
-
-    const projectLinks = document.querySelectorAll('.project-link');
-    const floatingImg = document.querySelector('.floating-project-image');
-    const projectsContainer = document.querySelector('.content-projects');
-    // Ensure floating image uses an <img> tag
-    if (!floatingImg.querySelector('img')) {
-      const imgEl = document.createElement('img');
-      imgEl.style.width = '100%';
-      imgEl.style.height = 'auto';
-      imgEl.style.display = 'block';
-      floatingImg.appendChild(imgEl);
-    }
-    const floatingImgTag = floatingImg.querySelector('img');
-    projectLinks.forEach(linkDiv => {
-      linkDiv.addEventListener('mouseenter', e => {
-        const a = linkDiv.querySelector('a');
-        const img = a.getAttribute('data-image');
-        if (img) {
-          floatingImgTag.src = img;
-          floatingImg.style.top = '0px';
-          floatingImg.classList.add('active');
-        }
-      });
-      linkDiv.addEventListener('mouseleave', e => {
-        floatingImg.classList.remove('active');
-      });
-      // Mobile: show image on click
-      linkDiv.addEventListener('click', e => {
-        if (window.innerWidth <= 600) {
-          e.preventDefault();
-          const a = linkDiv.querySelector('a');
-          const img = a.getAttribute('data-image');
-          if (img) {
-            floatingImgTag.src = img;
-            floatingImg.style.top = '0px';
-            floatingImg.style.display = 'block';
-            floatingImg.classList.add('active');
-          }
-        }
-      });
-    });
-    // Hide floating image on mobile when clicking elsewhere
-    if (window.innerWidth <= 600) {
-      document.body.addEventListener('click', function(e) {
-        if (!e.target.closest('.project-link')) {
-          floatingImg.classList.remove('active');
-          floatingImg.style.display = '';
-        }
-      });
-    }
-
-    // Hamburger menu JS
-    const hamburger = document.getElementById('hamburger');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const closeMenu = document.getElementById('closeMenu');
-    hamburger.addEventListener('click', () => {
-      mobileMenu.classList.add('open');
-      hamburger.classList.add('open');
-    });
-    closeMenu.addEventListener('click', () => {
-      mobileMenu.classList.remove('open');
-      hamburger.classList.remove('open');
-    });
-    </script>
 </head>
 <body>
     <header class="header">
         <button class="hamburger" id="hamburger" aria-label="Open menu">
           <span></span><span></span><span></span>
         </button>
-        <div class="logo"><img src="logo.svg" alt="Ana Lima Logo"></div>
-        <div class="nav-links">
-            <div class="nav-link-item">
-                <a href="#about">About me</a>
-            </div>
-            <div class="nav-link-item">
-                <a href="#projects">Selected projects</a>
-            </div>
-            <div class="nav-link-item">
-                <a href="#contact">Contact</a>
-            </div>
-        </div>
+        <img src="logo.svg" alt="Ana Lima logo" class="logo">
+       
+        <nav class="nav-links">
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </nav> 
         <div class="language-selector">
-            <span>Eng</span>
+            <span class="active">Eng</span>
             <span>Pt</span>
         </div>
     </header>
@@ -120,7 +31,7 @@
     <div class="mobile-menu" id="mobileMenu">
       <div class="mobile-menu-header">
         <button class="close-menu" id="closeMenu" aria-label="Close menu">&times;</button>
-        <div class="logo">Ana Lima</div>
+        <img src="logo.svg" alt="Ana Lima logo" class="logo">
         <div class="language-selector">
             <span class="active">Eng</span>
             <span>Pt</span>
@@ -153,9 +64,9 @@
                 <h1>I'm Ana, <i>brazilian</i> software designer<br>with practice in <span class="word-rotator"><i>user interface</i></span></h1>
                 <div class="content-about">
                     <p>With skills in research, prototyping and visual design, I'm always looking for the best user experience in every project. I love working in teams, collaborating in creative processes, and staying up to date with the latest market trends. Additionally, I'm communicative, proactive and organized, characteristics that help me handle deadlines and challenging projects. Let's exchange ideas and create something amazing together?</p>
-                    <button class="button">
+                    <a href="curriculum.pdf" target="_blank" class="button">
                         Download my CV
-                    </button>
+                    </a>
                 </div>
             </div>
         </section>
@@ -195,4 +106,88 @@
         </section>
     </main>
 </body>
+<script>
+const words = [
+  'Design systems',
+  'Prototyping',
+  'Branding',
+  'User interface',
+  'User experience',
+  'Interaction design'
+];
+const rotator = document.querySelector('.word-rotator i');
+let idx = 0;
+function showNextWord() {
+  rotator.classList.add('fading');
+  setTimeout(() => {
+    idx = (idx + 1) % words.length;
+    rotator.textContent = words[idx];
+    rotator.classList.remove('fading');
+  }, 500);
+}
+setInterval(showNextWord, 2200);
+
+const projectLinks = document.querySelectorAll('.project-link');
+const floatingImg = document.querySelector('.floating-project-image');
+const projectsContainer = document.querySelector('.content-projects');
+// Ensure floating image uses an <img> tag
+if (!floatingImg.querySelector('img')) {
+  const imgEl = document.createElement('img');
+  imgEl.style.width = '100%';
+  imgEl.style.height = 'auto';
+  imgEl.style.display = 'block';
+  floatingImg.appendChild(imgEl);
+}
+const floatingImgTag = floatingImg.querySelector('img');
+projectLinks.forEach(linkDiv => {
+  linkDiv.addEventListener('mouseenter', e => {
+    const a = linkDiv.querySelector('a');
+    const img = a.getAttribute('data-image');
+    if (img) {
+      floatingImgTag.src = img;
+      floatingImg.style.top = '0px';
+      floatingImg.classList.add('active');
+    }
+  });
+  linkDiv.addEventListener('mouseleave', e => {
+    floatingImg.classList.remove('active');
+  });
+  // Mobile: show image on click
+  linkDiv.addEventListener('click', e => {
+    if (window.innerWidth <= 600) {
+      e.preventDefault();
+      const a = linkDiv.querySelector('a');
+      const img = a.getAttribute('data-image');
+      if (img) {
+        floatingImgTag.src = img;
+        floatingImg.style.top = '0px';
+        floatingImg.style.display = 'block';
+        floatingImg.classList.add('active');
+      }
+    }
+  });
+});
+// Hide floating image on mobile when clicking elsewhere
+if (window.innerWidth <= 600) {
+  document.body.addEventListener('click', function(e) {
+    if (!e.target.closest('.project-link')) {
+      floatingImg.classList.remove('active');
+      floatingImg.style.display = '';
+    }
+  });
+}
+
+// Hamburger menu JS
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+const closeMenu = document.getElementById('closeMenu');
+hamburger.addEventListener('click', () => {
+  mobileMenu.classList.add('open');
+  hamburger.classList.add('open');
+});
+closeMenu.addEventListener('click', () => {
+  mobileMenu.classList.remove('open');
+  hamburger.classList.remove('open');
+});
+</script>
 </html> 

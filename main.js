@@ -78,34 +78,4 @@ hamburger.addEventListener('click', () => {
 closeMenu.addEventListener('click', () => {
     mobileMenu.classList.remove('open');
     hamburger.classList.remove('open');
-});
-
-// Scroll-based active navigation link
-const sections = document.querySelectorAll('main section');
-const navLinkItems = document.querySelectorAll('.nav-link-item');
-
-function updateActiveNavLink() {
-    let currentSectionId = '';
-
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop - document.querySelector('.header').offsetHeight; // Adjust for fixed header height
-        const sectionHeight = section.clientHeight;
-
-        if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
-            currentSectionId = section.getAttribute('id');
-        }
-    });
-
-    navLinkItems.forEach(item => {
-        item.classList.remove('active');
-        if (item.querySelector('a').getAttribute('href').substring(1) === currentSectionId) {
-            item.classList.add('active');
-        }
-    });
-}
-
-// Add scroll event listener
-window.addEventListener('scroll', updateActiveNavLink);
-
-// Call initially to set the active link on page load
-updateActiveNavLink(); 
+}); 

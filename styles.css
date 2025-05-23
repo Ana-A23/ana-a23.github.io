@@ -40,7 +40,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    height: auto;
+    height: 61px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -50,64 +50,32 @@ body {
     z-index: 1000;
 }
 
-.logo {
-    /* Existing logo styles if any, keeping it for now */
-}
-
-.logo img {
-    height: 24px;
-    vertical-align: middle;
-}
-
 .nav-links {
     display: flex;
     gap: 50px;
-    flex-grow: 1;
-    justify-content: center; /* Center the nav links */
-    height: auto; /* Set height to auto */
-    align-items: flex-end; /* Align items to the bottom */
 }
 
-.nav-link-item {
-    position: relative;
-    padding: 20px 0; /* Revert padding */
-    display: flex;
-    align-items: center;
-    border-top: none;
-    transition: none;
-}
-
-.nav-link-item a {
+.nav-links a {
     color: var(--text-color);
     text-decoration: none;
     font-size: 18px;
-    transition: color 0.3s ease;
+    position: relative;
+    transition: all 0.3s ease;
 }
 
-/* Remove any ::before rules if they exist for nav-link-item */
-.nav-link-item::before {
-    content: none;
-}
-
-/* Ensure the ::after pseudo-element for the bottom stroke is correct */
-.nav-link-item::after {
+.nav-links a::after {
     content: '';
     position: absolute;
-    bottom: 0; /* Position at the bottom */
+    width: 0;
+    height: 1px;
+    bottom: -2px;
     left: 0;
-    width: 100%;
-    height: 1px; /* 1px stroke */
     background-color: var(--text-color);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.5s cubic-bezier(0.77,0,0.175,1); /* Match project link animation */
-    display: block;
-    z-index: 1;
+    transition: width 0.3s ease;
 }
 
-.nav-link-item:hover::after,
-.nav-link-item.active::after {
-    transform: scaleX(1);
+.nav-links a:hover::after {
+    width: 100%;
 }
 
 .language-selector {
@@ -115,44 +83,32 @@ body {
     align-items: center;
     gap: 10px;
     cursor: pointer;
-    /* Positioning handled by flexbox in header */
 }
 
 .language-selector span {
     position: relative;
-    padding: 20px 8px; /* Revert padding */
-    transition: all 0.3s ease; /* Keep other transitions */
-    border-top: none;
-    transition: none;
+    padding: 4px 8px;
+    transition: all 0.3s ease;
 }
 
-/* Remove the old ::before styles */
-.language-selector span::before {
-    content: none;
-}
-
-/* Add the new ::after pseudo-element for the bottom stroke */
 .language-selector span::after {
     content: '';
     position: absolute;
-    bottom: 0; /* Position at the bottom */
+    bottom: -2px;
     left: 0;
     width: 100%;
-    height: 1px; /* 1px stroke for language selector */
+    height: 1px;
     background-color: var(--text-color);
     transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.5s cubic-bezier(0.77,0,0.175,1); /* Match project link animation */
+    transition: transform 0.3s ease;
 }
 
-.language-selector span:hover::after,
-.language-selector span.active::after {
+.language-selector span:hover::after {
     transform: scaleX(1);
 }
 
-.nav-link-item:hover,
-.nav-link-item.active {
-    background-color: transparent;
+.language-selector span.active::after {
+    transform: scaleX(1);
 }
 
 /* Section Styles */
@@ -362,6 +318,7 @@ section::after {
     position: relative;
     width: fit-content;
     transition: all 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+    text-decoration: none;
 }
 
 .button:hover {
@@ -421,7 +378,7 @@ section::after {
 }
 
 .projects .project-link:hover {
-    cursor: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 17L17 7" stroke="%23151515" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 7h10v10" stroke="%23151515" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>') 12 12, pointer;
+    cursor: url('data:image/svg+xml;utf8,<svg width="41" height="40" viewBox="0 0 41 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M20.9736 32C30.2896 32 37.9736 27.678 37.9736 22C37.9736 16.322 30.2896 12 20.9736 12C11.6576 12 3.97363 16.322 3.97363 22C3.97363 27.678 11.6576 32 20.9736 32ZM20.9736 14C29.3316 14 35.9736 17.736 35.9736 22C35.9736 26.264 29.3316 30 20.9736 30C12.6156 30 5.97363 26.264 5.97363 22C5.97363 17.736 12.6156 14 20.9736 14Z" fill="#151515"/><path d="M19.9738 7C19.9738 6.73478 20.0792 6.48043 20.2667 6.29289C20.4542 6.10536 20.7086 6 20.9738 6C21.239 6 21.4934 6.10536 21.6809 6.29289C21.8685 6.48043 21.9738 6.73478 21.9738 7V13C21.9738 13.2652 21.8685 13.5196 21.6809 13.7071C21.4934 13.8946 21.239 14 20.9738 14C20.7086 14 20.4542 13.8946 20.2667 13.7071C20.0792 13.5196 19.9738 13.2652 19.9738 13V7ZM27.9938 7.804C28.0534 7.55168 28.2086 7.33235 28.4268 7.19227C28.6449 7.05219 28.909 7.00232 29.1632 7.05316C29.4174 7.104 29.6419 7.2516 29.7894 7.46481C29.937 7.67802 29.9959 7.94018 29.9538 8.196L28.9538 13.196C28.8943 13.4483 28.739 13.6677 28.5209 13.8077C28.3027 13.9478 28.0387 13.9977 27.7844 13.9468C27.5302 13.896 27.3057 13.7484 27.1582 13.5352C27.0107 13.322 26.9517 13.0598 26.9938 12.804L27.9938 7.804ZM13.9538 7.804C13.8943 7.55168 13.739 7.33235 13.5209 7.19227C13.3027 7.05219 13.0387 7.00232 12.7844 7.05316C12.5302 7.104 12.3057 7.2516 12.1582 7.46481C12.0107 7.67802 11.9517 7.94018 11.9938 8.196L12.9938 13.196C13.0534 13.4483 13.2086 13.6677 13.4268 13.8077C13.6449 13.9478 13.909 13.9977 14.1632 13.9468C14.4174 13.896 14.6419 13.7484 14.7894 13.5352C14.937 13.322 14.9959 13.0598 14.9538 12.804L13.9538 7.804ZM5.83182 10.486C5.69549 10.2584 5.47436 10.0944 5.21706 10.0298C4.95976 9.96534 4.68737 10.0057 4.45982 10.142C4.23226 10.2783 4.06818 10.4995 4.00367 10.7568C3.93915 11.0141 3.97949 11.2864 4.11582 11.514L7.11582 16.514C7.25214 16.7416 7.47327 16.9056 7.73057 16.9701C7.98787 17.0347 8.26026 16.9943 8.48782 16.858C8.71537 16.7217 8.87945 16.5005 8.94397 16.2432C9.00848 15.9859 8.96814 15.7136 8.83182 15.486L5.83182 10.486ZM36.1158 10.486C36.1833 10.3733 36.2723 10.275 36.3778 10.1968C36.4833 10.1185 36.6032 10.0618 36.7306 10.0298C36.858 9.99791 36.9904 9.99137 37.1203 10.0106C37.2503 10.0299 37.3751 10.0745 37.4878 10.142C37.6005 10.2095 37.6988 10.2985 37.777 10.404C37.8553 10.5095 37.912 10.6294 37.944 10.7568C37.9759 10.8842 37.9824 11.0166 37.9632 11.1465C37.944 11.2765 37.8993 11.4013 37.8318 11.514L34.8318 16.514C34.7643 16.6267 34.6753 16.725 34.5698 16.8032C34.4643 16.8815 34.3445 16.9382 34.2171 16.9701C34.0897 17.0021 33.9572 17.0086 33.8273 16.9894C33.6974 16.9701 33.5725 16.9255 33.4598 16.858C33.3471 16.7905 33.2489 16.7015 33.1706 16.596C33.0923 16.4905 33.0356 16.3706 33.0037 16.2432C32.9717 16.1158 32.9652 15.9834 32.9844 15.8535C33.0037 15.7235 33.0483 15.5987 33.1158 15.486L36.1158 10.486ZM26.9738 21C26.9738 22.5913 26.3417 24.1174 25.2165 25.2426C24.0912 26.3679 22.5651 27 20.9738 27C19.3825 27 17.8564 26.3679 16.7312 25.2426C15.606 24.1174 14.9738 22.5913 14.9738 21C14.9738 19.4087 15.606 17.8826 16.7312 16.7574C17.8564 15.6321 19.3825 15 20.9738 15C22.5651 15 24.0912 15.6321 25.2165 16.7574C26.3417 17.8826 26.9738 19.4087 26.9738 21Z" fill="#151515"/></svg>') 12 12, pointer !important;
 }
 
 .projects .project-link a {
@@ -438,13 +395,12 @@ section::after {
     left: unset;
     top: 0;
     margin-left: 70px;
-    width: 420px;
+    width: 50%;
     height: auto;
     max-width: 90%;
     max-height: 80vh;
     pointer-events: none;
     opacity: 0;
-    border-radius: 16px;
     background: none;
     transition: opacity 0.5s cubic-bezier(0.77,0,0.175,1), top 0.5s cubic-bezier(0.77,0,0.175,1);
     z-index: 10;
@@ -458,7 +414,6 @@ section::after {
     width: 100%;
     height: auto;
     display: block;
-    border-radius: 16px;
 }
 
 .project-link p {
@@ -577,22 +532,12 @@ main {
         --container-padding: 0 10vw;
     }
 
-    .header {
-        justify-content: space-between;
-        padding: 0 16px;
-    }
     .nav-links {
-        display: none; /* Hide desktop nav links on mobile */
+        display: none !important;
     }
-    .hamburger {
-        display: flex; /* Show hamburger on mobile */
-    }
-    .language-selector {
-      font-size: 20px;
-      gap: 12px;
-    }
-    .language-selector .active {
-      text-decoration: underline;
+
+    .nav-links a {
+        font-size: 16px;
     }
 
     .hero h1 {
@@ -639,6 +584,10 @@ main {
 
     .button {
         font-size: 18px;
+    }
+
+    body {
+        font-size: 16px;
     }
 
     .project-link {
@@ -922,7 +871,7 @@ main {
   }
   .logo {
     font-family: 'Instrument Serif', serif;
-    font-size: 32px;
+    font-size: 24px;
     text-align: center;
     flex: 1;
   }
@@ -944,12 +893,21 @@ main {
     background-color: #FFFBF0;
 }
 
-/* Ensure hamburger is hidden on desktop */
-@media (min-width: 601px) {
-    .hamburger {
-        display: none;
-    }
-    .mobile-menu {
-        display: none !important;
-    }
+.logo {
+  height: 24px;
+  width: auto;
+  display: block;
+}
+.logo[src$='.svg'] {
+  height: 24px;
+  width: auto;
+  display: block;
+}
+@media (max-width: 600px) {
+  .logo {
+    height: 24px;
+  }
+  .logo[src$='.svg'] {
+    height: 24px;
+  }
 } 
