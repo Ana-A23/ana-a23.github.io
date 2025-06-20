@@ -16,6 +16,11 @@ const translations = {
             about: "About me",
             projects: "Selected projects",
             contact: "Contact"
+        },
+        navLinks: {
+            about: "About",
+            projects: "Projects",
+            contact: "Contact"
         }
     },
     pt: {
@@ -33,6 +38,11 @@ const translations = {
         mobileMenu: {
             about: "Sobre mim",
             projects: "Projetos selecionados",
+            contact: "Contato"
+        },
+        navLinks: {
+            about: "Sobre",
+            projects: "Projetos",
             contact: "Contato"
         }
     }
@@ -90,6 +100,14 @@ function switchLanguage(lang) {
     // Update contact section
     document.querySelector('.contact h2').textContent = t.contact.title;
 
+    // Update navigation links
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        const href = link.getAttribute('href').replace('#', '');
+        if (t.navLinks[href]) {
+            link.textContent = t.navLinks[href];
+        }
+    });
+
     // Update mobile menu
     document.querySelectorAll('.mobile-nav section h2').forEach((h2, index) => {
         const sections = ['about', 'projects', 'contact'];
@@ -97,13 +115,34 @@ function switchLanguage(lang) {
     });
 
     // Update word rotator
-    words.length = 0;
-    words.push(...wordRotatorTranslations[lang]);
-    rotator.textContent = words[0];
+    const words = wordRotatorTranslations[lang];
+    const rotator = document.querySelector('.word-rotator i');
+    if (rotator) {
+        rotator.textContent = words[0];
+    }
 }
 
 // Add click handlers to language selectors
 document.addEventListener('DOMContentLoaded', () => {
+    // Initialize word rotator
+    const rotator = document.querySelector('.word-rotator i');
+    if (rotator) {
+        const words = wordRotatorTranslations.en;
+        rotator.textContent = words[0];
+        let idx = 0;
+        
+        function showNextWord() {
+            rotator.classList.add('fading');
+            setTimeout(() => {
+                idx = (idx + 1) % words.length;
+                rotator.textContent = words[idx];
+                rotator.classList.remove('fading');
+            }, 500);
+        }
+        setInterval(showNextWord, 2200);
+    }
+
+    // Add language selector click handlers
     document.querySelectorAll('.language-selector span').forEach(span => {
         span.addEventListener('click', () => {
             const lang = span.textContent.toLowerCase();
