@@ -87,13 +87,13 @@
             <div class="container">
                 <h2>Selected projects</h2>
                 <div class="content-projects">
-                    <div class="project-link">
+                    <div class="project-link" data-project="frattina">
                         <a href="#" data-image="frattina.png">Frattina</a>
                     </div>
-                    <div class="project-link">
+                    <div class="project-link" data-project="ds">
                         <a href="#" data-image="webdesign.jpg">Design system framework</a>
                     </div>
-                    <div class="project-link">
+                    <div class="project-link" data-project="libri">
                         <a href="#" data-image="libri.png">Libri.</a>
                     </div>
                     <div class="floating-project-image"></div>
@@ -224,20 +224,46 @@ const closePdfModal = document.querySelector('.close-pdf-modal');
 projectLinks.forEach((linkDiv, index) => {
     linkDiv.addEventListener('click', (e) => {
         e.preventDefault();
+        const project = linkDiv.getAttribute('data-project');
         let pdfFile;
-        if (index === 0) pdfFile = 'casefrattina.pdf';
-        else if (index === 1) pdfFile = 'caseDS.pdf';
+        if (project === 'frattina') pdfFile = 'casefrattina.pdf';
+        else if (project === 'ds') pdfFile = 'caseDS.pdf';
         else pdfFile = 'caselibri.pdf';
         pdfViewer.src = `${pdfFile}#toolbar=0&navpanes=0&scrollbar=0`;
         pdfModal.classList.add('active');
         document.body.style.overflow = 'hidden';
+        // Set hash for sharing
+        window.location.hash = `project=${project}`;
     });
 });
+
+// Open modal if hash is present on load
+function openProjectFromHash() {
+    const hash = window.location.hash;
+    if (hash.startsWith('#project=')) {
+        const project = hash.replace('#project=', '');
+        let pdfFile;
+        if (project === 'frattina') pdfFile = 'casefrattina.pdf';
+        else if (project === 'ds') pdfFile = 'caseDS.pdf';
+        else if (project === 'libri') pdfFile = 'caselibri.pdf';
+        if (pdfFile) {
+            pdfViewer.src = `${pdfFile}#toolbar=0&navpanes=0&scrollbar=0`;
+            pdfModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+    }
+}
+window.addEventListener('DOMContentLoaded', openProjectFromHash);
+window.addEventListener('hashchange', openProjectFromHash);
 
 closePdfModal.addEventListener('click', () => {
     pdfModal.classList.remove('active');
     document.body.style.overflow = '';
     pdfViewer.src = '';
+    // Remove hash
+    if (window.location.hash.startsWith('#project=')) {
+        history.replaceState(null, '', window.location.pathname + window.location.search);
+    }
 });
 
 // Close modal when clicking outside the content
@@ -246,6 +272,10 @@ pdfModal.addEventListener('click', (e) => {
         pdfModal.classList.remove('active');
         document.body.style.overflow = '';
         pdfViewer.src = '';
+        // Remove hash
+        if (window.location.hash.startsWith('#project=')) {
+            history.replaceState(null, '', window.location.pathname + window.location.search);
+        }
     }
 });
 </script>
