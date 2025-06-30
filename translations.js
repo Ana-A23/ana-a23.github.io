@@ -2,7 +2,7 @@
 const translations = {
     en: {
         about: {
-            title: "I'm Ana, <i>brazilian</i> software designer<br>with practice in <span class=\"word-rotator\"><i>user interface</i></span>",
+            title: "I'm Ana, <i>brazilian</i> product designer<br>with practice in <span class=\"word-rotator\"><i>user interface</i></span>",
             description: "With skills in research, prototyping and visual design, I'm always looking for the best user experience in every project. I love working in teams, collaborating in creative processes, and staying up to date with the latest market trends. Additionally, I'm communicative, proactive and organized, characteristics that help me handle deadlines and challenging projects. Let's exchange ideas and create something amazing together?",
             downloadCV: "Download my CV"
         },
@@ -25,7 +25,7 @@ const translations = {
     },
     pt: {
         about: {
-            title: "Sou Ana, designer de software <i>brasileira</i><br>com prática em <span class=\"word-rotator\"><i>interface do usuário</i></span>",
+            title: "Sou Ana, product <i>designer</i><br>com prática em <span class=\"word-rotator\"><i>interface do usuário</i></span>",
             description: "Com habilidades em pesquisa, prototipagem e design visual, estou sempre em busca da melhor experiência do usuário em cada projeto. Adoro trabalhar em equipes, colaborar em processos criativos e me manter atualizada com as últimas tendências do mercado. Além disso, sou comunicativa, proativa e organizada, características que me ajudam a lidar com prazos e projetos desafiadores. Vamos trocar ideias e criar algo incrível juntos?",
             downloadCV: "Baixar meu CV"
         },
