@@ -32,7 +32,7 @@
     <header class="fixed top-0 left-0 w-full border-b border-[#A8A8A8] bg-[#FDFDFD] z-50">
         <div class="max-w-[1440px] mx-auto px-6 md:px-[100px]">
             <div class="flex justify-between items-center h-[61px] gap-[50px]">
-                <!-- Left Navigation -->0
+                <!-- Left Navigation -->
                 <nav class="flex items-center gap-[50px] order-1 md:order-0">
                     <a href="#projects" class="font-sf-pro text-sm md:text-base leading-[21px] py-5 hover:opacity-70 transition">Projects</a>
                     <a href="#contact" class="font-sf-pro text-sm md:text-base leading-[21px] py-5 hover:opacity-70 transition">Contact</a>
@@ -89,11 +89,13 @@
                         <h1 class="font-serif text-[42px] md:text-[72px] leading-tight">Libri</h1>
                         <h1 class="font-serif text-[42px] md:text-[72px] leading-tight">a digital bookshelf</h1>
                     </div>
-                    <p class="font-sf-pro text-sm md:text-base leading-[150%] max-w-[900px]">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                    </p>
                     <div class="w-full h-[260px] md:h-[420px] bg-gray-200 mt-4">
                         <img src="imagens/libri.png" alt="Libri hero" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.classList.add('bg-gray-300');">
+                    <p class="font-sf-pro text-sm md:text-base leading-[150%] max-w-[900px]">
+                        Libri is an app designed for people who love reading and for those who want to discover new books and build a reading habit.
+                        Its main goal is to be a comprehensive and active community of readers, where users can learn more about literature in general, get great recommendations, exchange ideas, and organize their virtual library.
+                        As a study project, this case was essential for helping me better understand and practice the Double Diamond methodology—its stages, their respective goals, and the many tools we can use to achieve strong results.
+                    </p>
                     </div>
                 </div>
             </div>
@@ -103,17 +105,8 @@
         <section>
             <div class="max-w-[1440px] mx-auto px-6 md:px-[100px] py-16">
                 <div class="max-w-[1240px] mx-auto flex flex-col gap-16">
-                    <!-- Block 1 -->
+                    <!-- image block -->
                     <div class="flex flex-col gap-4">
-                        <h3 class="font-serif text-xl md:text-2xl italic">Design tokens</h3>
-                        <div class="flex flex-col lg:flex-row gap-40 justify-center items-center h-full">
-                            <p class="font-sf-pro text-sm md:text-base leading-[150%] lg:w-1/2">
-                                The framework was built by combining design tokens and atomic design, creating a simple yet well-structured foundation. Design tokens act as the core of the system, centralizing visual decisions such as colors, typography, and spacing. </br></br> They were organized into two levels: primitive tokens (base values) and semantic tokens (applied usage in the interface). This structure makes maintenance easier, improves clarity, and allows global changes with minimal effort.
-                                Semantic tokens, which represent specific roles in the interface such as background color or error text, were defined separately from primitive tokens, which are raw values like #FFFFFF or 16px. This classification-based separation was applied in the framework’s token structure. They were integrated using Figma’s variables and styles to ensure consistent usage. </br></br> The token naming was designed to be intuitive, making it easier for both designers and developers to understand and use the system.
-                            </p>
-                            <img src="imagens/designsystem/im2.png" alt="Design System Framework hero" class=" lg:w-1/2 h-full object-cover" onerror="this.style.display='none'; this.parentElement.classList.add('bg-gray-300');">
-                        </div>
-                    </br>
                     <div class="flex flex-col gap-6 justify-center items-center w-full">
                         <img 
                           src="imagens/designsystem/im20.png" 
@@ -124,17 +117,14 @@
 
                     <!-- Block 2 -->
                     <div class="flex flex-col gap-4">
-                        <h3 class="font-serif text-xl md:text-2xl italic">Components</h3>
+                        <h3 class="font-serif text-xl md:text-2xl italic">Ideation and definition</h3>
                         <div class="flex flex-col  gap-4 w-full">
                             <p class="font-sf-pro text-sm md:text-base leading-[150%] max-w-[900px] w-full">
-                              In the initial phase, the focus was on building key components that could be used across different types of interfaces. This ensured a solid foundation, covering the most common use cases and allowing the system to be quickly applied in real projects.</br></br>
-                          
-                              Each component was designed to handle multiple variations within a single structure. Properties such as state (e.g., hover, disabled), size, and type were implemented using variants and boolean controls, allowing easy customization without duplicating components.</br></br>
-                          
+                              During the ideation and definition phase of the Libri project, the focus was on gaining a deeper understanding of the market and empathizing with potential users to uncover their needs, pain points, and opportunities for innovation. This stage was supported by a combination of quantitative research, desk research, and benchmarking, which helped identify patterns, validate assumptions, and guide the direction of the solution.
                             </p>
                           
                             <img 
-                              src="imagens/designsystem/im4.png" 
+                              src="imagens/libri/ideation.png" 
                               class="w-full max-w-[900px] object-cover"
                             >
                           </div>
@@ -143,7 +133,7 @@
                             <p class="font-sf-pro text-sm md:text-base leading-[150%] max-w-[720px] lg:w-1/2">
                                 A key aspect of the construction was the direct connection between components and design tokens. All visual properties — such as colors, spacing, and typography — are driven by tokens, ensuring consistency and enabling global updates. This setup allows components to adapt quickly to different contexts while maintaining a cohesive visual system.
                             </p>
-                            <img src="imagens/designsystem/im5.png" alt="Design System Framework hero" class="lg:w-1/2 w-full h-full object-contain" onerror="this.style.display='none'; this.parentElement.classList.add('bg-gray-300');">
+                            <img src="imagens/libri/" alt="Design System Framework hero" class="lg:w-1/2 w-full h-full object-contain" onerror="this.style.display='none'; this.parentElement.classList.add('bg-gray-300');">
                         </div>
                     </br>
                         <div class="flex flex-col lg:flex-row gap-40 justify-center items-center h-full gap-4">
